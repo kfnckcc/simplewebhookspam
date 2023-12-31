@@ -1,0 +1,28 @@
+import requests
+
+def send_message(webhook_url, bot_name, message):
+    payload = {
+        "content": f"{bot_name}: {message}"
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+
+    response = requests.post(webhook_url, json=payload, headers=headers)
+
+    if response.status_code == 204:
+        print("Message sent nigger")
+    else:
+        print(f"Failed to send message. Status code: {response.status_code}")
+
+if __name__ == "__main__":
+    webhook_url = input("Enter the Discord webhook URL: ")
+    bot_name = input("Enter the name for the bot: ")
+    
+    while True:
+        message = input("Enter message (type 'exit' to quit): ")
+
+        if message.lower() == 'exit':
+            break
+
+        send_message(webhook_url, bot_name, message)
